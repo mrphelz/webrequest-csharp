@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Net;
 using System.IO;
 
@@ -44,7 +43,8 @@ namespace mooreaSoftware
     // custom headers list
     public List<mooreaWebRequestHeader> Headers { get; set; }
     // response status
-    public String Status { get; }
+    private String status = "";
+    public String Status { get { return status; } }
 
     /**
      * mooreaWebRequest init function
@@ -128,7 +128,7 @@ namespace mooreaSoftware
         WebResponse response = request.GetResponse();
 
         // set response status
-        this.Status = ((HttpWebResponse)response).StatusDescription;
+        status = ((HttpWebResponse)response).StatusDescription;
 
         // parse response from stream reader
         String responseFromServer = "";
